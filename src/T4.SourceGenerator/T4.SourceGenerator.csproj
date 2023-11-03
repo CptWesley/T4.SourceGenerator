@@ -1,31 +1,32 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <Import Project="../package.props" />
 
-  <PropertyGroup>
+  <PropertyGroup Label="Technical">
     <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
+    <DevelopmentDependency>true</DevelopmentDependency>
   </PropertyGroup>
 
   <PropertyGroup Label="PackageInfo">
     <Description>Roslyn code generator based for T4 templates.</Description>
     <PackageTags>t4; t4 template; template; templating; templates; source code generator; generator; source generator; boilerplate; boiler plate</PackageTags>
-    <Version>1.0.0-preview11</Version>
+    <Version>1.0.0-preview14</Version>
     <PackageReleaseNotes>
       ### v1.0.0
       - Initial version
     </PackageReleaseNotes>
   </PropertyGroup>
 
-  <PropertyGroup>
+  <PropertyGroup Label="Warnings">
     <NoWarn>QW0007</NoWarn>
   </PropertyGroup>
 
-  <ItemGroup>
+  <ItemGroup Label="Documentation">
     <AdditionalFiles Include="AnalyzerReleases.Shipped.md" />
     <AdditionalFiles Include="AnalyzerReleases.Unshipped.md" />
   </ItemGroup>
 
   <ItemGroup Label="CompileTimeDependencies">
-    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="3.6.0" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="3.8.0" PrivateAssets="all" />
   </ItemGroup>
 
   <ItemGroup Label="RuntimeDependencies">
@@ -33,7 +34,7 @@
     <PackageReference Include="System.CodeDom" Version="5.0.0" PrivateAssets="all" GeneratePathProperty="true" />
   </ItemGroup>
 
-  <ItemGroup>
+  <ItemGroup Label="DependencyPackaging">
     <None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
     <None Include="$(PkgMono_TextTemplating)\lib\netstandard2.0\*.dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
     <None Include="$(PkgSystem_CodeDom)\lib\netstandard2.0\*.dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />

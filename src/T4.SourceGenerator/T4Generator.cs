@@ -1,4 +1,6 @@
-﻿using Microsoft.CodeAnalysis;
+﻿#pragma warning disable RS1035 // Used for initial proof of concept.
+
+using Microsoft.CodeAnalysis;
 using Mono.TextTemplating;
 using System.CodeDom.Compiler;
 
@@ -23,7 +25,7 @@ public sealed class T4Generator : ISourceGenerator
         = new DiagnosticDescriptor("TF0004", "T4 Template generation error", "Unknown error occurred while generating code for T4 template '{0}'", "CodeGeneration", DiagnosticSeverity.Error, true);
 
     /// <inheritdoc />
-    public void Execute(SourceGeneratorContext context)
+    public void Execute(GeneratorExecutionContext context)
     {
         var generator = new TemplateGenerator();
         foreach (var file in context.AdditionalFiles.Where(f => Path.GetExtension(f.Path) == ".t4" || Path.GetExtension(f.Path) == ".tt"))
@@ -33,12 +35,12 @@ public sealed class T4Generator : ISourceGenerator
     }
 
     /// <inheritdoc />
-    public void Initialize(InitializationContext context)
+    public void Initialize(GeneratorInitializationContext context)
     {
         // Do nothing.
     }
 
-    private static void TryGenerate(ref SourceGeneratorContext ctx, TemplateGenerator generator, AdditionalText file)
+    private static void TryGenerate(ref GeneratorExecutionContext ctx, TemplateGenerator generator, AdditionalText file)
     {
         try
         {
@@ -53,7 +55,7 @@ public sealed class T4Generator : ISourceGenerator
         }
     }
 
-    private static bool Generate(ref SourceGeneratorContext ctx, TemplateGenerator generator, AdditionalText file)
+    private static bool Generate(ref GeneratorExecutionContext ctx, TemplateGenerator generator, AdditionalText file)
     {
         var templateName = Path.GetFileName(file.Path);
         var templateContent = file.GetText()?.ToString();
@@ -78,7 +80,7 @@ public sealed class T4Generator : ISourceGenerator
 
         if (success)
         {
-            ctx.AddSource(outputName, content);
+            ctx.AddSource(Path.GetFileName(outputName), content);
         }
 
         return success;

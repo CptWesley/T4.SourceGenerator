@@ -1,18 +1,15 @@
-﻿using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.Text;
+﻿#pragma warning disable RS1035 // Used for initial proof of concept.
+
+using Microsoft.CodeAnalysis;
 
 namespace T4.SourceGenerator;
 
 /// <summary>
-/// Provides extension methods for <see cref="SourceGeneratorContext"/> instances.
+/// Provides extension methods for <see cref="GeneratorExecutionContext "/> instances.
 /// </summary>
 internal static class ContextExtensions
 {
-    /// <inheritdoc cref="SourceGeneratorContext.ReportDiagnostic(Diagnostic)" />
-    public static void ReportDiagnostic(this ref SourceGeneratorContext ctx, DiagnosticDescriptor descriptor, Location location, params object[] args)
+    /// <inheritdoc cref="GeneratorExecutionContext .ReportDiagnostic(Diagnostic)" />
+    public static void ReportDiagnostic(this ref GeneratorExecutionContext ctx, DiagnosticDescriptor descriptor, Location location, params object[] args)
         => ctx.ReportDiagnostic(Diagnostic.Create(descriptor, location, args));
-
-    /// <inheritdoc cref="SourceGeneratorContext.AddSource(string, SourceText)" />
-    public static void AddSource(this ref SourceGeneratorContext ctx, string hintName, string sourceText)
-        => ctx.AddSource(hintName, SourceText.From(sourceText));
 }
