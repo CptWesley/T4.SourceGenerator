@@ -3,11 +3,11 @@
   <PropertyGroup>
     <Authors>Wesley Baartman</Authors>
     <Copyright>Copyright © Wesley Baartman 2023-current</Copyright>
-    <RepositoryUrl>https://github.com/CptWesley/Komponent</RepositoryUrl>
+    <RepositoryUrl>https://github.com/CptWesley/T4.SourceGenerator</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageProjectUrl>$(RepositoryUrl)</PackageProjectUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageIconUrl>https://github.com/CptWesley/Komponent/blob/master/logo_128x128.png?raw=true</PackageIconUrl>
+    <PackageIconUrl>https://github.com/CptWesley/T4.SourceGenerator/blob/master/logo_128x128.png?raw=true</PackageIconUrl>
     <PackageIcon>logo_128x128.png</PackageIcon>
     <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>

@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="../executable.props" />
+  
+  <ItemGroup>
+    <PackageReference Include="T4.SourceGenerator" Version="1.0.0-preview11" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AdditionalFiles Include="Templates/*" />
+  </ItemGroup>
+</Project>
