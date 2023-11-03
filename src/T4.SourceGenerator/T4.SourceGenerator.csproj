@@ -1,0 +1,37 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="../package.props" />
+
+  <PropertyGroup>
+    <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
+  </PropertyGroup>
+
+  <PropertyGroup Label="PackageInfo">
+    <Description>A varied collection of source code generators to reduce boiler plate.</Description>
+    <PackageTags>boilerplate; boiler plate; source code generator; generator; source generator</PackageTags>
+    <Version>1.0.0-preview7</Version>
+    <PackageReleaseNotes>
+      ### v1.0.0
+      - Initial version
+    </PackageReleaseNotes>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <NoWarn>QW0007</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup Label="CompileTimeDependencies">
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.6.0" PrivateAssets="all" />
+  </ItemGroup>
+
+  <ItemGroup Label="RuntimeDependencies">
+    <PackageReference Include="Mono.TextTemplating" Version="2.3.1" PrivateAssets="all" GeneratePathProperty="true" />
+    <PackageReference Include="System.CodeDom" Version="5.0.0" PrivateAssets="all" GeneratePathProperty="true" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="bin" Visible="false" />
+    <None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
+    <None Include="$(PkgMono_TextTemplating)\lib\netstandard2.0\*.dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
+    <None Include="$(PkgSystem_CodeDom)\lib\netstandard2.0\*.dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
+  </ItemGroup>
+</Project>

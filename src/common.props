@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project>
+  <PropertyGroup>
+    <Authors>Wesley Baartman</Authors>
+    <Copyright>Copyright © Wesley Baartman 2023-current</Copyright>
+    <RepositoryUrl>https://github.com/CptWesley/Komponent</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageProjectUrl>$(RepositoryUrl)</PackageProjectUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageIconUrl>https://github.com/CptWesley/Komponent/blob/master/logo_128x128.png?raw=true</PackageIconUrl>
+    <PackageIcon>logo_128x128.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="../../logo_128x128.png" Pack="true" Visible="false" PackagePath="" />
+    <None Include="../../README.md" Pack="true" Visible="false" PackagePath="" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <LangVersion>11.0</LangVersion>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <CheckEolTargetFramework>false</CheckEolTargetFramework>
+    <EnableNETAnalyzers>true</EnableNETAnalyzers>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <NuGetAudit>true</NuGetAudit>
+    <DebugType>full</DebugType>
+    <IsPublishable>false</IsPublishable>
+  </PropertyGroup>
+
+  <ItemGroup Label="Analyzers">
+    <PackageReference Include="AsyncFixer" Version="1.6.0" PrivateAssets="all" />
+    <PackageReference Include="DotNetProjectFile.Analyzers" Version="1.1.0" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.11.0-beta1.23420.2" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="8.0.0-preview1.23165.1" PrivateAssets="all" />
+    <PackageReference Include="Qowaiv.Analyzers.CSharp" Version="0.0.8" PrivateAssets="all" />
+    <PackageReference Include="SonarAnalyzer.CSharp" Version="9.12.0.78982" PrivateAssets="all" />
+  </ItemGroup>
+
+  <ItemGroup Label="CodeGenerators">
+    <PackageReference Include="PolySharp" Version="1.13.2" PrivateAssets="all" />
+  </ItemGroup>
+
+  <ItemGroup Label="ProjectFiles">
+    <AdditionalFiles Include="*.??proj" Visible="false" />
+    <AdditionalFiles Include="../common.props" Link="Properties/common.props" Visible="false" />
+    <AdditionalFiles Include="../package.props" Link="Properties/package.props" Visible="false" />
+    <AdditionalFiles Include="../executable.props" Link="Properties/executable.props" Visible="false" />
+    <AdditionalFiles Include="../benchmarks.props" Link="Properties/benchmarks.props" Visible="false" />
+    <AdditionalFiles Include="../tests.props" Link="Properties/tests.props" Visible="false" />
+  </ItemGroup>
+
+  <ItemGroup Label="DefaultImports">
+    <Using Include="System"/>
+    <Using Include="System.Collections"/>
+    <Using Include="System.Collections.Generic"/>
+    <Using Include="System.Diagnostics"/>
+    <Using Include="System.Diagnostics.CodeAnalysis"/>
+    <Using Include="System.Diagnostics.Contracts"/>
+    <Using Include="System.IO"/>
+    <Using Include="System.Linq"/>
+    <Using Include="System.Reflection"/>
+    <Using Include="System.Runtime.CompilerServices"/>
+    <Using Include="System.Runtime.InteropServices"/>
+    <Using Include="System.Text"/>
+    <Using Include="System.Text.RegularExpressions"/>
+    <Using Include="System.Threading"/>
+    <Using Include="System.Threading.Tasks"/>
+  </ItemGroup>
+</Project>

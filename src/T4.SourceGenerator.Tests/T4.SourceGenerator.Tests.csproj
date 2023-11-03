@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="../tests.props" />
+  <ItemGroup>
+    <PackageReference Include="T4.SourceGenerator" Version="1.0.0-preview7" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <AdditionalFiles Include="Templates/*" />
+  </ItemGroup>
+
+  <!--
+  <ItemGroup>
+    <PackageReference Include="Mono.TextTemplating" Version="2.3.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\T4.SourceGenerator\T4.SourceGenerator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+  </ItemGroup>
+  -->
+</Project>

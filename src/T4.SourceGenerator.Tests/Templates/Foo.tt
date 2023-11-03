@@ -1,0 +1,15 @@
+﻿<#@ template hostspecific="false" language="C#" #>
+<#@ output extension=".cs" #>
+namespace T4.SourceGenerator.Example;
+
+public sealed class Squares
+{
+<#
+	for (var i = 0; i < 256; i++)
+	{
+#>
+   public const int Squared<#= i #> = <#= i * i #>;
+<#
+}
+#>
+}
