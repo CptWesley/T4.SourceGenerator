@@ -9,7 +9,7 @@
   <PropertyGroup Label="PackageInfo">
     <Description>Roslyn code generator based for T4 templates.</Description>
     <PackageTags>t4; t4 template; template; templating; templates; source code generator; generator; source generator; boilerplate; boiler plate</PackageTags>
-    <Version>1.1.0-a</Version>
+    <Version>1.1.0</Version>
     <PackageReleaseNotes>
       ### v1.1.0
       - Update Mono.TextTemplating to 3.0.0 preview for C#11 support.
