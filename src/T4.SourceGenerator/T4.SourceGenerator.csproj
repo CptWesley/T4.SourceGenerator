@@ -9,15 +9,14 @@
   <PropertyGroup Label="PackageInfo">
     <Description>Roslyn code generator based for T4 templates.</Description>
     <PackageTags>t4; t4 template; template; templating; templates; source code generator; generator; source generator; boilerplate; boiler plate</PackageTags>
-    <Version>1.0.0</Version>
+    <Version>1.1.0-a</Version>
     <PackageReleaseNotes>
+      ### v1.1.0
+      - Update Mono.TextTemplating to 3.0.0 preview for C#11 support.
+      - Fix issue with unclear crashes.
       ### v1.0.0
       - Initial version
     </PackageReleaseNotes>
-  </PropertyGroup>
-
-  <PropertyGroup Label="Warnings">
-    <NoWarn>QW0007</NoWarn>
   </PropertyGroup>
 
   <ItemGroup Label="Documentation">
@@ -26,17 +25,19 @@
   </ItemGroup>
 
   <ItemGroup Label="CompileTimeDependencies">
-    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="3.8.0" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.7.0" PrivateAssets="all" />
   </ItemGroup>
 
   <ItemGroup Label="RuntimeDependencies">
-    <PackageReference Include="Mono.TextTemplating" Version="2.3.1" PrivateAssets="all" GeneratePathProperty="true" />
-    <PackageReference Include="System.CodeDom" Version="5.0.0" PrivateAssets="all" GeneratePathProperty="true" />
+    <PackageReference Include="Mono.TextTemplating" Version="3.0.0-preview-0027-g2711105671 " PrivateAssets="all" GeneratePathProperty="true" />
+    <PackageReference Include="Mono.TextTemplating.Roslyn" Version="3.0.0-preview-0027-g2711105671 " PrivateAssets="all" GeneratePathProperty="true" />
+    <PackageReference Include="System.CodeDom" Version="6.0.0" PrivateAssets="all" GeneratePathProperty="true" />
   </ItemGroup>
 
   <ItemGroup Label="DependencyPackaging">
     <None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
     <None Include="$(PkgMono_TextTemplating)\lib\netstandard2.0\*.dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
+    <None Include="$(PkgMono_TextTemplating_Roslyn)\lib\netstandard2.0\*.dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
     <None Include="$(PkgSystem_CodeDom)\lib\netstandard2.0\*.dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
   </ItemGroup>
 </Project>
