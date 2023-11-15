@@ -27,10 +27,9 @@ public sealed class T4Generator : ISourceGenerator
     /// <inheritdoc />
     public void Execute(GeneratorExecutionContext context)
     {
-        var generator = new TemplateGenerator();
         foreach (var file in context.AdditionalFiles.Where(f => Path.GetExtension(f.Path) == ".t4" || Path.GetExtension(f.Path) == ".tt"))
         {
-            TryGenerate(ref context, generator, file);
+            TryGenerate(ref context, file);
         }
     }
 
@@ -40,11 +39,11 @@ public sealed class T4Generator : ISourceGenerator
         // Do nothing.
     }
 
-    private static void TryGenerate(ref GeneratorExecutionContext ctx, TemplateGenerator generator, AdditionalText file)
+    private static void TryGenerate(ref GeneratorExecutionContext ctx, AdditionalText file)
     {
         try
         {
-            if (!Generate(ref ctx, generator, file))
+            if (!Generate(ref ctx, file))
             {
                 ctx.ReportDiagnostic(UnknownError, file.GetLocation(0, 0), file.Path);
             }
@@ -55,12 +54,15 @@ public sealed class T4Generator : ISourceGenerator
         }
     }
 
-    private static bool Generate(ref GeneratorExecutionContext ctx, TemplateGenerator generator, AdditionalText file)
+    private static bool Generate(ref GeneratorExecutionContext ctx, AdditionalText file)
     {
+        var generator = new TemplateGenerator();
+        generator.UseInProcessCompiler();
+
         var templateName = Path.GetFileName(file.Path);
         var templateContent = file.GetText()?.ToString();
         var parsed = generator.ParseTemplate(templateName, templateContent);
-        var messages = GetMessages(parsed);
+        var messages = GetMessages(parsed.Errors);
 
         foreach (var msg in messages)
         {
@@ -70,27 +72,38 @@ public sealed class T4Generator : ISourceGenerator
 
         if (messages.Any(msg => !msg.IsWarning))
         {
-            return true;
+            return false;
         }
 
         var settings = TemplatingEngine.GetSettings(generator, parsed);
         settings.CompilerOptions = "-nullable:enable";
 
-        (var outputName, var content, var success) = generator.ProcessTemplateAsync(templateName, templateContent, templateName).Result;
+        (var outputName, var content) = generator.ProcessTemplateAsync(parsed, templateName, templateContent, templateName, settings).Result;
 
-        if (success)
+        messages = GetMessages(generator.Errors);
+        foreach (var msg in messages)
         {
-            ctx.AddSource(Path.GetFileName(outputName), content);
+            var location = file.GetLocation(0, 0);
+            ctx.ReportDiagnostic(msg.IsWarning ? ParseWarning : ParseError, location, msg.ErrorNumber, msg.ErrorText);
         }
 
-        return success;
+        if (messages.Any(msg => !msg.IsWarning) || content is null || outputName is null)
+        {
+            return false;
+        }
+
+        ctx.AddSource(Path.GetFileName(outputName), content);
+        return true;
     }
 
-    private static IEnumerable<CompilerError> GetMessages(ParsedTemplate parsed)
+    private static IReadOnlyList<CompilerError> GetMessages(CompilerErrorCollection errors)
     {
-        for (var i = 0; i < parsed.Errors.Count; i++)
+        var result = new List<CompilerError>();
+        for (var i = 0; i < errors.Count; i++)
         {
-            yield return parsed.Errors[i];
+            result.Add(errors[i]);
         }
+
+        return result;
     }
 }
