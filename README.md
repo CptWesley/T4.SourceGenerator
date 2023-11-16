@@ -24,7 +24,7 @@ To install the package manually, include the following snippet in your `.csproj`
 <Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <PackageReference Include="T4.SourceGenerator" Version="1.1.0" PrivateAssets="all" />
+    <PackageReference Include="T4.SourceGenerator" Version="1.2.0" PrivateAssets="all" />
   </ItemGroup>
 
 </Project>
