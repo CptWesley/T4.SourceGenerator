@@ -1,6 +1,4 @@
-﻿#pragma warning disable RS1035 // Used for initial proof of concept.
-
-using Microsoft.CodeAnalysis;
+﻿using Microsoft.CodeAnalysis;
 using Mono.TextTemplating;
 using System.CodeDom.Compiler;
 
@@ -10,24 +8,21 @@ namespace T4.SourceGenerator;
 /// Provides source code generation for T4 templates.
 /// </summary>
 [Generator]
-public sealed class T4Generator : ISourceGenerator
+public sealed class T4Generator : IIncrementalGenerator
 {
     /// <inheritdoc />
-    public void Execute(GeneratorExecutionContext context)
+    public void Initialize(IncrementalGeneratorInitializationContext context)
     {
-        foreach (var file in context.AdditionalFiles.Where(f => Path.GetExtension(f.Path) == ".t4" || Path.GetExtension(f.Path) == ".tt"))
+        var provider = context.AdditionalTextsProvider
+            .Where(f => Path.GetExtension(f.Path) == ".t4" || Path.GetExtension(f.Path) == ".tt");
+
+        context.RegisterSourceOutput(provider, (ctx, file) =>
         {
-            TryGenerate(ref context, file);
-        }
+            TryGenerate(ref ctx, file);
+        });
     }
 
-    /// <inheritdoc />
-    public void Initialize(GeneratorInitializationContext context)
-    {
-        // Do nothing.
-    }
-
-    private static void TryGenerate(ref GeneratorExecutionContext ctx, AdditionalText file)
+    private static void TryGenerate(ref SourceProductionContext ctx, AdditionalText file)
     {
         try
         {
@@ -42,7 +37,7 @@ public sealed class T4Generator : ISourceGenerator
         }
     }
 
-    private static bool Generate(ref GeneratorExecutionContext ctx, AdditionalText file)
+    private static bool Generate(ref SourceProductionContext ctx, AdditionalText file)
     {
         var generator = new TemplateGenerator();
         generator.UseInProcessCompiler();
