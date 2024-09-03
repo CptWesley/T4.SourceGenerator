@@ -47,6 +47,7 @@ dotnet_diagnostic.CA2016.severity = warning     # Forward the 'CancellationToken
 dotnet_diagnostic.CA2211.severity = warning     # Non-constant fields should not be visible
 dotnet_diagnostic.CA2231.severity = warning     # Overload operator equals on overriding value type Equals
 dotnet_diagnostic.CA2254.severity = warning     # Template should be a static expression
+dotnet_diagnostic.CA2255.severity = none        # ModuleInitializerAttribute is only for advanced scenarios
 
 dotnet_diagnostic.CA1860.severity = none        #  Prefer comparing 'Length' to 0 rather than using 'Any()'
 
@@ -73,6 +74,7 @@ dotnet_diagnostic.S3257.severity = warning      # Declarations and initializatio
 dotnet_diagnostic.S3776.severity = warning      # Cognitive Complexity of methods should not be too high
 dotnet_diagnostic.S3925.severity = warning      # "ISerializable" should be implemented correctly
 dotnet_diagnostic.S6354.severity = warning      # Use a testable Time Provider
+dotnet_diagnostic.S6602.severity = none         # Avoid FirstOrDefault for arrays
 
 dotnet_diagnostic.SA0001.severity = none        # Enable XML comment analysis.
 dotnet_diagnostic.SA1101.severity = none        # Prefix local calls with this.
