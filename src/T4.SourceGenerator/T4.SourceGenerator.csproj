@@ -9,7 +9,7 @@
   <PropertyGroup Label="PackageInfo">
     <Description>Roslyn code generator based for T4 templates.</Description>
     <PackageTags>t4; t4 template; template; templating; templates; source code generator; generator; source generator; boilerplate; boiler plate</PackageTags>
-    <Version>1.3.0-preview26</Version>
+    <Version>1.3.0-preview29</Version>
     <PackageReleaseNotes>
 <![CDATA[
       ### v1.3.0
