@@ -15,7 +15,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		tests.props = tests.props
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "T4.SourceGenerators.Example", "T4.SourceGenerators.Example\T4.SourceGenerators.Example.csproj", "{94EDF53A-FF88-43BB-B7A9-1C544824E9EA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "T4.SourceGenerator.Example", "T4.SourceGenerator.Example\T4.SourceGenerator.Example.csproj", "{94EDF53A-FF88-43BB-B7A9-1C544824E9EA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
