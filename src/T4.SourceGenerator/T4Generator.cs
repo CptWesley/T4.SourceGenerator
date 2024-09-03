@@ -59,6 +59,7 @@ public sealed class T4Generator : IIncrementalGenerator
         }
 
         var settings = TemplatingEngine.GetSettings(generator, parsed);
+        settings.LangVersion = "12.0";
         settings.CompilerOptions = "-nullable:enable";
 
         ConfigureRefs(generator);
