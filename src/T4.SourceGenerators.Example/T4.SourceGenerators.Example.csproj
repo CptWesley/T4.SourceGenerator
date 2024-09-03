@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <Import Project="../executable.props" />
   
   <ItemGroup>
@@ -6,6 +6,6 @@
   </ItemGroup>
   
   <ItemGroup>
-    <PackageReference Include="T4.SourceGenerator" Version="1.2.0" PrivateAssets="all" />
+    <PackageReference Include="T4.SourceGenerator" Version="1.3.0-preview24" PrivateAssets="all" />
   </ItemGroup>
 </Project>

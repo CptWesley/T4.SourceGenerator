@@ -29,7 +29,17 @@ internal static class ContextExtensions
     {
         var location = file.Find(msg.Line, msg.Column, msg.FileName);
         var descriptor = msg.IsWarning ? Diagnostics.ParseWarning : Diagnostics.ParseError;
-        ctx.ReportDiagnostic(descriptor, location, msg.ErrorText);
+        ctx.ReportDiagnostic(descriptor, location, msg.ErrorText.EscapeWhitespace());
     }
 
+    /// <summary>
+    /// Escapes the whitespace characters in the given <paramref name="text"/>.
+    /// </summary>
+    /// <param name="text">The text to escape.</param>
+    /// <returns>The escaped text.</returns>
+    public static string EscapeWhitespace(this string text)
+        => text
+        .Replace("\r", "\\r")
+        .Replace("\n", "\\n")
+        .Replace("\t", "\\t");
 }

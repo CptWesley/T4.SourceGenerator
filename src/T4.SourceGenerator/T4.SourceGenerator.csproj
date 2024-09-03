@@ -9,8 +9,12 @@
   <PropertyGroup Label="PackageInfo">
     <Description>Roslyn code generator based for T4 templates.</Description>
     <PackageTags>t4; t4 template; template; templating; templates; source code generator; generator; source generator; boilerplate; boiler plate</PackageTags>
-    <Version>1.2.0</Version>
-    <PackageReleaseNotes>
+    <Version>1.3.0-preview24</Version>
+    <PackageReleaseNotes><![CDATA[
+      ### v1.3.0
+      - Fix issue with relation to building from command line.
+      - Fix error messages being truncated on the first newline character.
+      - Update Mono.TextTemplating preview for more language support.
       ### v1.2.0
       - Improve template compile error reporting.
       - Turn generator into incremental generator.
@@ -19,7 +23,7 @@
       - Fix issue with unclear crashes.
       ### v1.0.0
       - Initial version
-    </PackageReleaseNotes>
+    ]]></PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup Label="Documentation">
@@ -28,19 +32,29 @@
   </ItemGroup>
 
   <ItemGroup Label="CompileTimeDependencies">
-    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.7.0" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.11.0" PrivateAssets="all" />
   </ItemGroup>
 
   <ItemGroup Label="RuntimeDependencies">
-    <PackageReference Include="Mono.TextTemplating" Version="3.0.0-preview-0027-g2711105671" PrivateAssets="all" GeneratePathProperty="true" />
-    <PackageReference Include="Mono.TextTemplating.Roslyn" Version="3.0.0-preview-0027-g2711105671" PrivateAssets="all" GeneratePathProperty="true" />
+    <PackageReference Include="Mono.TextTemplating" Version="3.0.0-preview-0052-g5d0f76c785" PrivateAssets="all" GeneratePathProperty="true" />
+    <PackageReference Include="Mono.TextTemplating.Roslyn" Version="3.0.0-preview-0052-g5d0f76c785" PrivateAssets="all" GeneratePathProperty="true" />
     <PackageReference Include="System.CodeDom" Version="6.0.0" PrivateAssets="all" GeneratePathProperty="true" />
   </ItemGroup>
 
   <ItemGroup Label="DependencyPackaging">
     <None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
-    <None Include="$(PkgMono_TextTemplating)\lib\netstandard2.0\*.dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
-    <None Include="$(PkgMono_TextTemplating_Roslyn)\lib\netstandard2.0\*.dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
-    <None Include="$(PkgSystem_CodeDom)\lib\netstandard2.0\*.dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
+    <EmbeddedResource Include="$(PkgMono_TextTemplating)\lib\netstandard2.0\*.dll" Visible="false" />
+    <EmbeddedResource Include="$(PkgMono_TextTemplating_Roslyn)\lib\netstandard2.0\*.dll" Visible="false" />
+    <EmbeddedResource Include="$(PkgSystem_CodeDom)\lib\netstandard2.0\*.dll" Visible="false" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Update="DotNetProjectFile.Analyzers" Version="1.4.1" />
+    <PackageReference Update="Microsoft.CodeAnalysis.Analyzers" Version="3.11.0-beta1.24324.1" />
+    <PackageReference Update="Microsoft.CodeAnalysis.NetAnalyzers" Version="8.0.0" />
+    <PackageReference Update="PolySharp" Version="1.14.1" />
+    <PackageReference Update="Qowaiv.Analyzers.CSharp" Version="2.0.2" />
+    <PackageReference Update="SonarAnalyzer.CSharp" Version="9.32.0.97167" />
+    <PackageReference Update="StyleCop.Analyzers.Unstable" Version="1.2.0.556" />
   </ItemGroup>
 </Project>

@@ -49,6 +49,7 @@ dotnet_diagnostic.CA2231.severity = warning     # Overload operator equals on ov
 dotnet_diagnostic.CA2254.severity = warning     # Template should be a static expression
 
 dotnet_diagnostic.CA1860.severity = none        #  Prefer comparing 'Length' to 0 rather than using 'Any()'
+dotnet_diagnostic.CA2255.severity = none        # ModuleInitializerAttribute is only for advanced scenarios
 
 dotnet_diagnostic.QW0001.severity = none        # Use a testable Time Provider
 dotnet_diagnostic.QW0005.severity = none        # Seal class or make explicity inheritable
@@ -58,6 +59,8 @@ dotnet_diagnostic.S101.severity  = none         # Types should be named in Pasca
 dotnet_diagnostic.S1694.severity = none         # Convert this 'abstract' class to a concrete type with a protected constructor.
 dotnet_diagnostic.S2583.severity = none         # Condition always True (disabled because of too many false positives)
 dotnet_diagnostic.S3376.severity = none         # Attribute, EventArgs, and Exception type names should end with the type being extended
+dotnet_diagnostic.S3885.severity = none         # Replace this call to 'Assembly.LoadFrom' with 'Assembly.Load'
+dotnet_diagnostic.S6602.severity = none         # Avoid FirstOrDefault for arrays
 
 dotnet_diagnostic.S107.severity  = warning      # Methods should not have too many parameters
 dotnet_diagnostic.S1144.severity = warning      # Unused private types or members should be removed
