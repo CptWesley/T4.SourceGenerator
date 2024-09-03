@@ -1,6 +1,4 @@
-﻿using T4.SourceGenerator.Example;
-
-namespace T4.SourceGenerators.Example;
+﻿namespace T4.SourceGenerators.Example;
 
 public static class Program
 {
