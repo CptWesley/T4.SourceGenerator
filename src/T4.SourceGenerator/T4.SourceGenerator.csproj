@@ -49,14 +49,4 @@
     <EmbeddedResource Include="$(PkgMono_TextTemplating_Roslyn)\lib\netstandard2.0\*.dll" Visible="false" />
     <EmbeddedResource Include="$(PkgSystem_CodeDom)\lib\netstandard2.0\*.dll" Visible="false" />
   </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Update="DotNetProjectFile.Analyzers" Version="1.4.1" />
-    <PackageReference Update="Microsoft.CodeAnalysis.Analyzers" Version="3.11.0-beta1.24324.1" />
-    <PackageReference Update="Microsoft.CodeAnalysis.NetAnalyzers" Version="8.0.0" />
-    <PackageReference Update="PolySharp" Version="1.14.1" />
-    <PackageReference Update="Qowaiv.Analyzers.CSharp" Version="2.0.2" />
-    <PackageReference Update="SonarAnalyzer.CSharp" Version="9.32.0.97167" />
-    <PackageReference Update="StyleCop.Analyzers.Unstable" Version="1.2.0.556" />
-  </ItemGroup>
 </Project>
