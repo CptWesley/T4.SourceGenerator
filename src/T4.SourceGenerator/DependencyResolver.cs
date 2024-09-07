@@ -7,6 +7,7 @@ namespace T4.SourceGenerator;
 internal static class DependencyResolver
 {
     private static readonly string TempDir = Path.Combine(Path.GetTempPath(), "T4.SourceGenerator", Guid.NewGuid().ToString("N"));
+    private static readonly HashSet<string> Tried = new();
 
     /// <summary>
     /// Registers the dependency resolver.
@@ -23,6 +24,11 @@ internal static class DependencyResolver
     [MethodImpl(MethodImplOptions.NoInlining)]
     private static Assembly? Load(string fullName)
     {
+        if (!Tried.Add(fullName))
+        {
+            return null;
+        }
+
         var name = new AssemblyName(fullName);
         var loadedAssembly = AppDomain.CurrentDomain.GetAssemblies().FirstOrDefault(a => a.GetName().FullName == name.FullName);
         if (loadedAssembly is { })
@@ -47,7 +53,8 @@ internal static class DependencyResolver
             fs.Flush();
         }
 
-        var asm = Assembly.LoadFrom(fileName);
+        var assemblyName = AssemblyName.GetAssemblyName(fileName);
+        var asm = Assembly.Load(assemblyName);
         return asm;
     }
 }
