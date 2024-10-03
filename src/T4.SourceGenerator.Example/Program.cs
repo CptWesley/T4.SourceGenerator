@@ -1,4 +1,4 @@
-﻿namespace T4.SourceGenerator.Example;
+namespace T4.SourceGenerator.Example;
 
 public static class Program
 {

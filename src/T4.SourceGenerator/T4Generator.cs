@@ -1,4 +1,4 @@
-﻿using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis;
 using Microsoft.VisualStudio.TextTemplating;
 using Mono.TextTemplating;
 using System.CodeDom.Compiler;
