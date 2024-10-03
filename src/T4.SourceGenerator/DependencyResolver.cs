@@ -1,4 +1,4 @@
-﻿#pragma warning disable RS1035
+#pragma warning disable RS1035
 namespace T4.SourceGenerator;
 
 /// <summary>
@@ -6,7 +6,6 @@ namespace T4.SourceGenerator;
 /// </summary>
 internal static class DependencyResolver
 {
-    private static readonly string TempDir = Path.Combine(Path.GetTempPath(), "T4.SourceGenerator", Guid.NewGuid().ToString("N"));
     private static readonly HashSet<string> Tried = new();
 
     /// <summary>
@@ -45,8 +44,10 @@ internal static class DependencyResolver
             return null;
         }
 
-        Directory.CreateDirectory(TempDir);
-        var fileName = Path.Combine(TempDir, $"{name.Name}.dll");
+        var tempDir = Path.Combine(Path.GetTempPath(), "T4.SourceGenerator", Guid.NewGuid().ToString("N"));
+
+        Directory.CreateDirectory(tempDir);
+        var fileName = Path.Combine(tempDir, $"{name.Name}.dll");
         using (var fs = File.Create(fileName))
         {
             resourceStream.CopyTo(fs);
