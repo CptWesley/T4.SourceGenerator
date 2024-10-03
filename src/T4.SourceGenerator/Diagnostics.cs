@@ -30,5 +30,4 @@ public static class Diagnostics
     /// </summary>
     public static readonly DiagnosticDescriptor UnknownError
         = new DiagnosticDescriptor("TF0004", "T4 Template generation error", "Unknown error occurred while generating code for T4 template '{0}'", "CodeGeneration", DiagnosticSeverity.Error, true);
-
 }

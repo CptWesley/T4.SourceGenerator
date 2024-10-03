@@ -1,4 +1,5 @@
 ﻿using Microsoft.CodeAnalysis;
+using Microsoft.VisualStudio.TextTemplating;
 using Mono.TextTemplating;
 using System.CodeDom.Compiler;
 
@@ -33,7 +34,8 @@ public sealed class T4Generator : IIncrementalGenerator
         }
         catch (Exception e)
         {
-            ctx.ReportDiagnostic(Diagnostics.ExceptionError, file.GetLocation(0, 0), file.Path, e.ToString());
+            var escaped = e.ToString().EscapeWhitespace();
+            ctx.ReportDiagnostic(Diagnostics.ExceptionError, file.GetLocation(0, 0), file.Path, escaped);
         }
     }
 
@@ -57,7 +59,10 @@ public sealed class T4Generator : IIncrementalGenerator
         }
 
         var settings = TemplatingEngine.GetSettings(generator, parsed);
+        settings.LangVersion = "12.0";
         settings.CompilerOptions = "-nullable:enable";
+
+        ConfigureRefs(generator);
 
         (var outputName, var content) = generator.ProcessTemplateAsync(parsed, templateName, templateContent, templateName, settings).Result;
 
@@ -82,5 +87,76 @@ public sealed class T4Generator : IIncrementalGenerator
         }
 
         return result;
+    }
+
+    private static void ConfigureRefs(TemplateGenerator generator)
+    {
+        var refs = GetRefs();
+        generator.Refs.Clear();
+        generator.Refs.AddRange(refs);
+    }
+
+    private static HashSet<string> GetRefs()
+    {
+#pragma warning disable RS1035
+        var refs = new HashSet<string>();
+
+        // Standard library.
+        refs.AddAssemblyName<string>();
+        refs.AddAssemblyName<Uri>();
+        refs.AddAssemblyName(typeof(File));
+        refs.AddAssemblyName<StringReader>();
+        refs.AddAssemblyName(typeof(Enumerable));
+        refs.AddAssemblyName<MethodInfo>();
+
+        // Visual studio
+        refs.AddAssemblyName<TextTransformation>();
+
+        // Mono.Templating
+        refs.AddAssemblyName<CompiledTemplate>();
+        refs.AddAssemblyName(typeof(RoslynTemplatingEngineExtensions));
+
+        // System.CodeDom
+        refs.AddAssemblyName<System.CodeDom.CodeBinaryOperatorExpression>();
+
+#pragma warning restore RS1035
+        return refs;
+    }
+}
+
+/// <summary>Provides extension methods.</summary>
+file static class Extensions
+{
+    /// <summary>
+    /// Adds an assembly to the reference set based on the given <typeparamref name="T"/> marker type.
+    /// </summary>
+    /// <typeparam name="T">The marker type.</typeparam>
+    /// <param name="refs">The references to add to.</param>
+    internal static void AddAssemblyName<T>(this HashSet<string> refs)
+        => refs.AddAssemblyName(typeof(T));
+
+    /// <summary>
+    /// Adds an assembly to the reference set based on the given marker <paramref name="type"/>.
+    /// </summary>
+    /// <param name="refs">The references to add to.</param>
+    /// <param name="type">The marker type.</param>
+    internal static void AddAssemblyName(this HashSet<string> refs, Type type)
+    {
+        var name = type.GetAssemblyName();
+        if (name is { })
+        {
+            refs.Add(name);
+        }
+    }
+
+    private static string? GetAssemblyName(this Type type)
+    {
+        var path = type.Assembly.Location?.Trim();
+        if (string.IsNullOrWhiteSpace(path))
+        {
+            path = type.Assembly.FullName;
+        }
+
+        return path;
     }
 }

@@ -1,14 +1,16 @@
-<?xml version="1.0" encoding="utf-8"?>
 <Project>
   <Import Project="common.props" />
 
   <PropertyGroup Label="PackageInfo">
     <IsPackable>true</IsPackable>
     <PackageId>$(AssemblyName)</PackageId>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <PropertyGroup Label="Technical">
@@ -18,7 +20,7 @@
   </PropertyGroup>
 
   <ItemGroup Label="Analyzers">
-    <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.507" PrivateAssets="all" />
+    <PackageReference Include="StyleCop.Analyzers.Unstable" Version="1.2.0.556" PrivateAssets="all" />
   </ItemGroup>
 
   <ItemGroup Label="Other">
