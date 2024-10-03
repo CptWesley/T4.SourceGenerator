@@ -26,14 +26,16 @@
     <NuGetAudit>true</NuGetAudit>
     <DebugType>full</DebugType>
     <IsPublishable>false</IsPublishable>
+    <ManagePackageVersionsCentrally>false</ManagePackageVersionsCentrally>
+    <IsTestProject>false</IsTestProject>
   </PropertyGroup>
 
   <ItemGroup Label="Analyzers">
     <PackageReference Include="AsyncFixer" Version="1.6.0" PrivateAssets="all" />
-    <PackageReference Include="DotNetProjectFile.Analyzers" Version="1.4.1" PrivateAssets="all" />
+    <PackageReference Include="DotNetProjectFile.Analyzers" Version="1.4.5" PrivateAssets="all" />
     <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.11.0-beta1.24324.1" PrivateAssets="all" />
     <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="8.0.0" PrivateAssets="all" />
-    <PackageReference Include="Qowaiv.Analyzers.CSharp" Version="2.0.2" PrivateAssets="all" />
+    <PackageReference Include="Qowaiv.Analyzers.CSharp" Version="2.0.3" PrivateAssets="all" />
     <PackageReference Include="SonarAnalyzer.CSharp" Version="9.32.0.97167" PrivateAssets="all" />
   </ItemGroup>
 

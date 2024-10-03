@@ -2,6 +2,7 @@ root = true
 [*]
 end_of_line = crlf
 insert_final_newline = true
+charset = utf-8
 
 # Code files
 [*.{cs,json,cshtml,ts}]
@@ -34,7 +35,7 @@ dotnet_diagnostic.CS8629.severity = error
 dotnet_diagnostic.CS8633.severity = error
 dotnet_diagnostic.CS8767.severity = error
 
-dotnet_diagnostic.CS8019.severity = warning     # Unnecessary using directive
+dotnet_diagnostic.CS8019.severity = none     # Unnecessary using directive
 
 dotnet_diagnostic.IDE1006.severity = none       # IDE1006: Naming Styles
 
