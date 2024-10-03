@@ -5,7 +5,7 @@
 [![T4.SourceGenerator](https://raw.githubusercontent.com/CptWesley/T4.SourceGenerator/master/logo_128x128.png)](https://github.com/CptWesley/T4.SourceGenerator)
 
 # T4.SourceGenerator
-Modern Roslyn Source Generator for T4 templates, which transforms [T4 templates](https://learn.microsoft.com/en-us/visualstudio/modeling/code-generation-and-t4-text-templates?view=vs-2022) during compilation using the [mono T4 templating engine (Mono.TextTemplating)](https://github.com/mono/t4/). This means that `C#11` features are available to be used in your [T4 templates](https://learn.microsoft.com/en-us/visualstudio/modeling/code-generation-and-t4-text-templates?view=vs-2022).
+Modern Roslyn Source Generator for T4 templates, which transforms [T4 templates](https://learn.microsoft.com/en-us/visualstudio/modeling/code-generation-and-t4-text-templates?view=vs-2022) during compilation using the [mono T4 templating engine (Mono.TextTemplating)](https://github.com/mono/t4/). This means that `C#12` features are available to be used in your [T4 templates](https://learn.microsoft.com/en-us/visualstudio/modeling/code-generation-and-t4-text-templates?view=vs-2022).
 
 ## Installing
 
