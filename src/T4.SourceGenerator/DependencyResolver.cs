@@ -54,8 +54,7 @@ internal static class DependencyResolver
             fs.Flush();
         }
 
-        var assemblyName = AssemblyName.GetAssemblyName(fileName);
-        var asm = Assembly.Load(assemblyName);
+        var asm = Assembly.LoadFile(fileName);
         return asm;
     }
 }
